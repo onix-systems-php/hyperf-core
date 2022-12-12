@@ -19,7 +19,7 @@ class ConfigProvider
             'dependencies' => [
             ],
             'commands' => [
-                AnonymizeDataCommand::class,
+                \Hyperf\Core\Command\AnonymizeDataCommand::class,
             ],
             'annotations' => [
                 'scan' => [
