@@ -1,5 +1,5 @@
 {
-    "name": "hyperf/hyperf-core",
+    "name": "hyperf-core/core",
     "type": "library",
     "license": "MIT",
     "keywords": [
