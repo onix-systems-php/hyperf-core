@@ -19,6 +19,7 @@ class ConfigProvider
             'dependencies' => [
             ],
             'commands' => [
+                AnonymizeDataCommand::class,
             ],
             'annotations' => [
                 'scan' => [

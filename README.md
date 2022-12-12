@@ -2,5 +2,5 @@
 
 Install:
 ```
-composer create-project hyperf/hyperf-core
+composer require hyperf/hyperf-core
 ```
