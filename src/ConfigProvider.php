@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Hyperf\Core;
+namespace OnixSystemsPHP\HyperfCore;
 
 class ConfigProvider
 {
@@ -19,7 +19,7 @@ class ConfigProvider
             'dependencies' => [
             ],
             'commands' => [
-                \Hyperf\Core\Command\AnonymizeDataCommand::class,
+                \OnixSystemsPHP\HyperfCore\Command\AnonymizeDataCommand::class,
             ],
             'annotations' => [
                 'scan' => [

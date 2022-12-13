@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Service;
+namespace OnixSystemsPHP\HyperfCore\Service;
 
 use Attribute;
 use Hyperf\Di\Annotation\AbstractAnnotation;

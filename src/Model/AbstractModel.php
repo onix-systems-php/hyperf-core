@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Model;
+namespace OnixSystemsPHP\HyperfCore\Model;
 
-use Hyperf\Core\Model\Filter\AbstractFilter;
+use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
 use Faker\Generator;
 use Hyperf\Database\Model\Builder;
 use Hyperf\DbConnection\Model\Model as BaseModel;

@@ -8,12 +8,12 @@ return [
         /**
          * List repositories you need to anonymize here.
          *
-         * Default method is anonymize from Hyperf\Core\Model\AbstractModel,
+         * Default method is anonymize from OnixSystemsPHP\HyperfCore\Model\AbstractModel,
          * you can use other method by using class as a key and method name as a value.
-         * Notice! Custom method has to follow Hyperf\Core\Model\AbstractModel::anonymize signature
+         * Notice! Custom method has to follow OnixSystemsPHP\HyperfCore\Model\AbstractModel::anonymize signature
          *
          * Please, don't use AbstractRepository in real config directly
          */
-        \Hyperf\Core\Repository\AbstractRepository::class,
+        \OnixSystemsPHP\HyperfCore\Repository\AbstractRepository::class,
     ],
 ];

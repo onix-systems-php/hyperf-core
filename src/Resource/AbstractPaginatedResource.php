@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Resource;
+namespace OnixSystemsPHP\HyperfCore\Resource;
 
-use Hyperf\Core\DTO\Common\PaginationResultDTO;
+use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
 
 /**
  * @method __construct(PaginationResultDTO $resource)

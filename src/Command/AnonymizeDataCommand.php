@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Command;
+namespace OnixSystemsPHP\HyperfCore\Command;
 
-use Hyperf\Core\Service\Common\AnonymizeDataService;
+use OnixSystemsPHP\HyperfCore\Service\Common\AnonymizeDataService;
 use Hyperf\Command\Annotation\Command;
 use Hyperf\Command\Command as HyperfCommand;
 use Symfony\Component\Console\Input\InputArgument;

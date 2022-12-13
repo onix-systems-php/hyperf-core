@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Service\Common;
+namespace OnixSystemsPHP\HyperfCore\Service\Common;
 
-use Hyperf\Core\Model\AbstractModel;
-use Hyperf\Core\Repository\AbstractRepository;
-use Hyperf\Core\Service\Service;
+use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
+use OnixSystemsPHP\HyperfCore\Repository\AbstractRepository;
+use OnixSystemsPHP\HyperfCore\Service\Service;
 use Faker\Factory;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\ContainerInterface;

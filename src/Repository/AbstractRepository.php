@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Repository;
+namespace OnixSystemsPHP\HyperfCore\Repository;
 
-use Hyperf\Core\DTO\Common\PaginationRequestDTO;
-use Hyperf\Core\DTO\Common\PaginationResultDTO;
-use Hyperf\Core\Model\AbstractModel;
-use Hyperf\Core\Model\Filter\AbstractFilter;
+use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationRequestDTO;
+use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
+use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
+use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
 use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Model;
 

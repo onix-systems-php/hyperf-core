@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\DTO;
+namespace OnixSystemsPHP\HyperfCore\DTO;
 
 use ClassTransformer\ClassTransformer;
 use Hyperf\HttpServer\Contract\RequestInterface;

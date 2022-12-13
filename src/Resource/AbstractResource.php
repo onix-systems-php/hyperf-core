@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Resource;
+namespace OnixSystemsPHP\HyperfCore\Resource;
 
 use Hyperf\Resource\Json\JsonResource;
 

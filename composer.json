@@ -9,7 +9,7 @@
     "description": "Library of kernel for hyperf",
     "autoload": {
         "psr-4": {
-            "Hyperf\\Core\\": "src/"
+            "OnixSystemsPHP\\HyperfCore\\": "src/"
         }
     },
     "autoload-dev": {

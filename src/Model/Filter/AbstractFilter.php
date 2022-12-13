@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Hyperf\Core\Model\Filter;
+namespace OnixSystemsPHP\HyperfCore\Model\Filter;
 
 use Hyperf\Database\Model\Builder;
 use Hyperf\Utils\Str;
