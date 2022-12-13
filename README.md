@@ -19,5 +19,5 @@ Includes the following general usage classes:
 
 Install:
 ```
-composer require hyperf-core/core
+composer require onix-systems-php/hyperf-core
 ```
