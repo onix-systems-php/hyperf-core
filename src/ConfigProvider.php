@@ -28,6 +28,14 @@ class ConfigProvider
                     ],
                 ],
             ],
+            'publish' => [
+                [
+                    'id' => 'config',
+                    'description' => 'The config for anonymization from onix-systems-php/hyperf-core.',
+                    'source' => __DIR__ . '/../publish/anonymization.php',
+                    'destination' => BASE_PATH . '/config/autoload/anonymization.php',
+                ],
+            ],
         ];
     }
 }

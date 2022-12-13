@@ -5,6 +5,7 @@ namespace Hyperf\Core\Repository;
 
 use Hyperf\Core\DTO\Common\PaginationRequestDTO;
 use Hyperf\Core\DTO\Common\PaginationResultDTO;
+use Hyperf\Core\Model\AbstractModel;
 use Hyperf\Core\Model\Filter\AbstractFilter;
 use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Model;
@@ -14,7 +15,7 @@ abstract class AbstractRepository
     private const ORDER_ASC = 'asc';
     private const ORDER_DESC = 'desc';
 
-    protected string $modelClass = Model::class;
+    protected string $modelClass = AbstractModel::class;
 
     public function create(array $data = []): Model
     {
