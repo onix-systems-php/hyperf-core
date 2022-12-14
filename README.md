@@ -2,8 +2,12 @@
 
 Includes the following general usage classes:
 
+- Exception:
+    - BusinessException.
 - Command:
     - AnonymizeDataCommand.
+- Constants:
+    - ErrorCode.
 - DTO:
     - AbstractDTO;
     - PaginationRequestDTO;
