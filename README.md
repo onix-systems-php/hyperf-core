@@ -13,6 +13,7 @@ Includes the following general usage classes:
     - PaginationRequestDTO;
     - PaginationResultDTO.
 - Model:
+    - Parasite trait;
     - AbstractModel;
     - AbstractFilter.
 - Repository:
