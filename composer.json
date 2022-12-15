@@ -22,6 +22,7 @@
         "ext-json": "*",
         "fakerphp/faker": "^1.0",
         "hyperf/command": "^2.2|^3.0",
+        "hyperf/constants": "^2.2|^3.0",
         "hyperf/contract": "^2.2|^3.0",
         "hyperf/database": "^2.2|^3.0",
         "hyperf/db-connection": "^2.2|^3.0",
