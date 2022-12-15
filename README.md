@@ -8,6 +8,9 @@ Includes the following general usage classes:
     - AnonymizeDataCommand.
 - Constants:
     - ErrorCode.
+- Listener:
+  - LogDBQueryListener;
+  - LogQueueListener.
 - DTO:
     - AbstractDTO;
     - PaginationRequestDTO;

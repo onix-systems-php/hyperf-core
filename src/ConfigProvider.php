@@ -28,6 +28,10 @@ class ConfigProvider
                     ],
                 ],
             ],
+            'listeners' => [
+                \OnixSystemsPHP\HyperfActionsLog\Listener\LogDBQueryListener::class,
+                \OnixSystemsPHP\HyperfActionsLog\Listener\LogQueueListener::class,
+            ],
             'publish' => [
                 [
                     'id' => 'config',
