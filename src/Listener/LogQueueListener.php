@@ -1,7 +1,7 @@
 <?php
-declare(strict_types=1);
 
-namespace App\Listener;
+declare(strict_types=1);
+namespace OnixSystemsPHP\HyperfCore\Listener;
 
 use Hyperf\AsyncQueue\AnnotationJob;
 use Hyperf\AsyncQueue\Event\AfterHandle;

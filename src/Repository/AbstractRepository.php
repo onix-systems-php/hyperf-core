@@ -1,18 +1,19 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Repository;
 
+use Hyperf\Database\Model\Builder;
+use Hyperf\Database\Model\Model;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationRequestDTO;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
 use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
 use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
-use Hyperf\Database\Model\Builder;
-use Hyperf\Database\Model\Model;
 
 abstract class AbstractRepository
 {
     private const ORDER_ASC = 'asc';
+
     private const ORDER_DESC = 'desc';
 
     protected string $modelClass = AbstractModel::class;
@@ -100,8 +101,7 @@ abstract class AbstractRepository
         $result = $force ? $builder->firstOrFail() : $builder->first();
         if ($result instanceof Model || is_null($result)) {
             return $result;
-        } else {
-            return null;
         }
+        return null;
     }
 }

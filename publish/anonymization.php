@@ -1,11 +1,10 @@
 <?php
 
 declare(strict_types=1);
-
 return [
     // Use array key as anonymization config name
     'main' => [
-        /**
+        /*
          * List repositories you need to anonymize here.
          *
          * Default method is anonymize from OnixSystemsPHP\HyperfCore\Model\AbstractModel,

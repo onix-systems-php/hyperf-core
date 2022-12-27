@@ -20,6 +20,7 @@ class ConfigProvider
             ],
             'commands' => [
                 \OnixSystemsPHP\HyperfCore\Command\AnonymizeDataCommand::class,
+                \OnixSystemsPHP\HyperfCore\Command\SwaggerGenCommand::class,
             ],
             'annotations' => [
                 'scan' => [
@@ -29,8 +30,6 @@ class ConfigProvider
                 ],
             ],
             'listeners' => [
-                \OnixSystemsPHP\HyperfActionsLog\Listener\LogDBQueryListener::class,
-                \OnixSystemsPHP\HyperfActionsLog\Listener\LogQueueListener::class,
             ],
             'publish' => [
                 [
@@ -38,6 +37,12 @@ class ConfigProvider
                     'description' => 'The config for anonymization from onix-systems-php/hyperf-core.',
                     'source' => __DIR__ . '/../publish/anonymization.php',
                     'destination' => BASE_PATH . '/config/autoload/anonymization.php',
+                ],
+                [
+                    'id' => 'swagger',
+                    'description' => 'The config for swagger from onix-systems-php/hyperf-core.',
+                    'source' => __DIR__ . '/../publish/swagger.php',
+                    'destination' => BASE_PATH . '/config/autoload/swagger.php',
                 ],
             ],
         ];

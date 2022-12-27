@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Model\Filter;
 
 use Hyperf\Database\Model\Builder;
@@ -21,7 +21,7 @@ abstract class AbstractFilter
         foreach ($this->fields() as $field => $value) {
             $method = Str::camel($field);
             if (method_exists($this, $method)) {
-                call_user_func_array([$this, $method], (array)$value);
+                call_user_func_array([$this, $method], (array) $value);
             }
         }
     }
