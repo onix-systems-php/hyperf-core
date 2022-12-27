@@ -44,12 +44,6 @@ class ConfigProvider
                     'source' => __DIR__ . '/../publish/swagger.php',
                     'destination' => BASE_PATH . '/config/autoload/swagger.php',
                 ],
-                [
-                    'id' => 'extensions',
-                    'description' => 'The config for extensions from onix-systems-php/hyperf-core.',
-                    'source' => __DIR__ . '/../publish/extensions.php',
-                    'destination' => BASE_PATH . '/config/autoload/extensions.php',
-                ],
             ],
         ];
     }
