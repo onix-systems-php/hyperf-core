@@ -8,6 +8,7 @@ use Hyperf\Database\Model\Relations\BelongsTo;
 
 /**
  * @property int $user_id
+ * @property ?User $user
  */
 abstract class AbstractOwnedModel extends AbstractModel
 {
