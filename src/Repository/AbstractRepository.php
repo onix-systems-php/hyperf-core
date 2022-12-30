@@ -20,7 +20,7 @@ abstract class AbstractRepository
     protected string $modelClass = AbstractModel::class;
 
     public function __construct(
-        protected ?CoreDataGuard $dataGuard = null,
+        protected ?CoreDataGuard $dataGuard,
     ) {
     }
 
