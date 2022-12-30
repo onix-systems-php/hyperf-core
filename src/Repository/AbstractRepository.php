@@ -34,6 +34,11 @@ abstract class AbstractRepository
         return $this->modelClass::query();
     }
 
+    public function withTrashed(): Builder
+    {
+        return $this->modelClass::withTrashed();
+    }
+
     public function filter(AbstractFilter $filters): Builder
     {
         return $this->modelClass::filter($filters);
