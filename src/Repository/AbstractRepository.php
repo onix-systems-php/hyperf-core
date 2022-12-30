@@ -5,6 +5,7 @@ namespace OnixSystemsPHP\HyperfCore\Repository;
 
 use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Model;
+use OnixSystemsPHP\HyperfCore\Contract\CoreDataGuard;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationRequestDTO;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
 use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
@@ -17,6 +18,11 @@ abstract class AbstractRepository
     private const ORDER_DESC = 'desc';
 
     protected string $modelClass = AbstractModel::class;
+
+    public function __construct(
+        protected ?CoreDataGuard $dataGuard = null,
+    ) {
+    }
 
     public function create(array $data = []): Model
     {
@@ -63,8 +69,16 @@ abstract class AbstractRepository
         $this->modelClass::chunk($count, $callback);
     }
 
+    public function getModelClass(): string
+    {
+        return $this->modelClass;
+    }
+
     protected function paginate(Builder $query, PaginationRequestDTO $params): PaginationResultDTO
     {
+        if ($this->dataGuard) {
+            $query = $this->dataGuard->specify($this, $query);
+        }
         $page = $params?->page ?? 1;
         $per_page = $params?->per_page ?? 20;
         if (is_array($params?->order)) {
@@ -95,6 +109,9 @@ abstract class AbstractRepository
 
     protected function fetchOne(Builder $builder, bool $lock, bool $force): ?Model
     {
+        if ($this->dataGuard) {
+            $builder = $this->dataGuard->specify($this, $builder, 'fetch');
+        }
         if ($lock) {
             $builder = $builder->lockForUpdate();
         }
