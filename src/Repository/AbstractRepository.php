@@ -59,6 +59,11 @@ abstract class AbstractRepository
         return $model->forceDelete();
     }
 
+    public function restore(Model $model): bool
+    {
+        return $model->restore();
+    }
+
     public function associate(Model $model, string $relation, Model $related): Model
     {
         return $model->{$relation}()->associate($related);
