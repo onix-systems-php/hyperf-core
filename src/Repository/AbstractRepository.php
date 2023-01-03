@@ -3,20 +3,16 @@
 declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Repository;
 
-use Hyperf\Database\Model\Builder;
 use Hyperf\Database\Model\Model;
 use OnixSystemsPHP\HyperfCore\Contract\CoreDataGuard;
-use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationRequestDTO;
-use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
 use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
-use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
+use OnixSystemsPHP\HyperfCore\Model\Builder;
 
+/**
+ * @method null|AbstractModel fetchOne(bool $lock, bool $force) use only for type hint
+ */
 abstract class AbstractRepository
 {
-    private const ORDER_ASC = 'asc';
-
-    private const ORDER_DESC = 'desc';
-
     protected string $modelClass = AbstractModel::class;
 
     public function __construct(
@@ -24,24 +20,16 @@ abstract class AbstractRepository
     ) {
     }
 
+    public function query(): Builder
+    {
+        /** @var Builder $builder */
+        $builder = $this->modelClass::query();
+        return $builder->setRepository($this);
+    }
+
     public function create(array $data = []): Model
     {
         return new $this->modelClass($data);
-    }
-
-    public function query(): Builder
-    {
-        return $this->modelClass::query();
-    }
-
-    public function withTrashed(): Builder
-    {
-        return $this->modelClass::withTrashed();
-    }
-
-    public function filter(AbstractFilter $filters): Builder
-    {
-        return $this->modelClass::filter($filters);
     }
 
     public function update(Model $model, array $data): Model
@@ -51,7 +39,23 @@ abstract class AbstractRepository
 
     public function save(Model $model): bool
     {
+
         return $model->save();
+    }
+
+    public function push(Model $model): bool
+    {
+        return $model->push();
+    }
+
+    public function firstOrCreate(array $attributes, array $values = []): Model
+    {
+        return $this->modelClass::firstOrCreate($attributes, $values);
+    }
+
+    public function updateOrCreate(array $attributes, array $values = []): Model
+    {
+        return $this->modelClass::updateOrCreate($attributes, $values);
     }
 
     public function delete(Model $model): bool
@@ -74,9 +78,18 @@ abstract class AbstractRepository
         return $model->{$relation}()->associate($related);
     }
 
-    public function chunk(int $count, callable $callback): void
+    public function finder(string $type, ...$parameters): AbstractRepository|Builder
     {
-        $this->modelClass::chunk($count, $callback);
+        return $this->query()->finder($type, ...$parameters);
+    }
+
+    public function scopeTrashed(Builder $query, string $type): void
+    {
+        if ($type === 'all') {
+            $query->withTrashed();
+        } elseif ($type === 'trashed') {
+            $query->onlyTrashed();
+        }
     }
 
     public function getModelClass(): string
@@ -84,51 +97,8 @@ abstract class AbstractRepository
         return $this->modelClass;
     }
 
-    protected function paginate(Builder $query, PaginationRequestDTO $params): PaginationResultDTO
+    public function getDataGuard(): ?CoreDataGuard
     {
-        if ($this->dataGuard) {
-            $query = $this->dataGuard->specify($this, $query);
-        }
-        $page = $params?->page ?? 1;
-        $per_page = $params?->per_page ?? 20;
-        if (is_array($params?->order)) {
-            foreach ($params->order as $item) {
-                if (str_starts_with($item, '-')) {
-                    $by = self::ORDER_DESC;
-                    $field = substr($item, 1);
-                } else {
-                    $by = self::ORDER_ASC;
-                    $field = $item;
-                }
-                $query->orderBy($field, $by);
-            }
-        }
-        $paginated = $query->paginate(
-            perPage: $per_page,
-            page: $page,
-        );
-        $total = $paginated->total();
-        return PaginationResultDTO::make([
-            'list' => $paginated->items(),
-            'total' => $total,
-            'page' => $page,
-            'per_page' => $per_page,
-            'total_pages' => $per_page != 0 ? ceil($total / $per_page) : 0,
-        ]);
-    }
-
-    protected function fetchOne(Builder $builder, bool $lock, bool $force): ?Model
-    {
-        if ($this->dataGuard) {
-            $builder = $this->dataGuard->specify($this, $builder, 'fetch');
-        }
-        if ($lock) {
-            $builder = $builder->lockForUpdate();
-        }
-        $result = $force ? $builder->firstOrFail() : $builder->first();
-        if ($result instanceof Model || is_null($result)) {
-            return $result;
-        }
-        return null;
+        return $this->dataGuard;
     }
 }

@@ -5,9 +5,12 @@ namespace OnixSystemsPHP\HyperfCore\Model\Filter;
 
 use Hyperf\Database\Model\Builder;
 use Hyperf\Utils\Str;
+use OnixSystemsPHP\HyperfCore\Repository\HasRepository;
 
 abstract class AbstractFilter
 {
+    use HasRepository;
+
     protected Builder $builder;
 
     public function __construct(protected array $filters)

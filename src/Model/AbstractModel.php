@@ -1,21 +1,27 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Model;
 
-use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
 use Faker\Generator;
-use Hyperf\Database\Model\Builder;
+use Hyperf\Database\Model\Builder as BaseBuilder;
 use Hyperf\DbConnection\Model\Model as BaseModel;
+use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
 
 /**
- * @method static Builder filter(AbstractFilter $filters)
+ * @method static BaseBuilder filter(AbstractFilter $filters)
+ * @method static Builder query()
  */
 abstract class AbstractModel extends BaseModel
 {
-    public function scopeFilter(Builder $builder, AbstractFilter $filter)
+    public function scopeFilter(BaseBuilder $builder, AbstractFilter $filter)
     {
         $filter->apply($builder);
+    }
+
+    public function newModelBuilder($query): Builder
+    {
+        return new Builder($query);
     }
 
     public function anonymize(Generator $faker): self
