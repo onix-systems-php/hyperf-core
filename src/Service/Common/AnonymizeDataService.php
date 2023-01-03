@@ -1,6 +1,6 @@
 <?php
-declare(strict_types=1);
 
+declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Service\Common;
 
 use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
@@ -36,8 +36,9 @@ class AnonymizeDataService
             if (!$repositoryClass instanceof AbstractRepository) {
                 continue;
             }
+            $repositoryClass->processGuards = false;
 
-            $repositoryClass->chunk(100, function ($records) use ($faker, $methodName) {
+            $repositoryClass->query()->chunk(100, function ($records) use ($faker, $methodName) {
                 /** @var AbstractModel $record */
                 foreach ($records as $record) {
                     $record->$methodName($faker)->saveOrFail();

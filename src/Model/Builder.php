@@ -43,7 +43,7 @@ class Builder extends BaseBuilder
     public function fetchOne(bool $lock, bool $force): ?Model
     {
         $query = $this;
-        if ($this->repository?->getDataGuard()) {
+        if ($this->repository?->processGuards && $this->repository->getDataGuard()) {
             $query = $this->repository?->getDataGuard()->specify($this->repository, $query, 'fetch');
         }
         if ($lock) {
@@ -113,6 +113,8 @@ class Builder extends BaseBuilder
 
     protected function guardList(): void
     {
-        $this->repository?->getDataGuard()?->specify($this->repository, $this);
+        if ($this->repository?->processGuards) {
+            $this->repository->getDataGuard()?->specify($this->repository, $this);
+        }
     }
 }

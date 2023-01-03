@@ -13,6 +13,7 @@ use OnixSystemsPHP\HyperfCore\Model\Builder;
  */
 abstract class AbstractRepository
 {
+    public bool $processGuards = true;
     protected string $modelClass = AbstractModel::class;
 
     public function __construct(
