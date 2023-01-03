@@ -3,8 +3,8 @@
 declare(strict_types=1);
 namespace OnixSystemsPHP\HyperfCore\Model\Filter;
 
-use Hyperf\Database\Model\Builder;
 use Hyperf\Utils\Str;
+use OnixSystemsPHP\HyperfCore\Model\Builder;
 use OnixSystemsPHP\HyperfCore\Repository\HasRepository;
 
 abstract class AbstractFilter
