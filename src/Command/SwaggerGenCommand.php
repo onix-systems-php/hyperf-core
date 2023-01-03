@@ -32,7 +32,7 @@ class SwaggerGenCommand extends HyperfCommand
         $format = $this->input->getOption('format');
 
         $paths = $this->config->get('swagger', ['app/']);
-        $openapi = Generator::scan($paths, ['analyser' => new TokenAnalyser()]);
+        $openapi = Generator::scan($paths);
 
         if (strtolower($format) === 'json') {
             $content = $openapi->toJson();
