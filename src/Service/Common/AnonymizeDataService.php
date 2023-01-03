@@ -32,7 +32,7 @@ class AnonymizeDataService
                 $methodName = 'anonymize';
             }
 
-            $repositoryClass = $this->container->get($repositoryClassName);
+            $repositoryClass = $this->container->make($repositoryClassName);
             if (!$repositoryClass instanceof AbstractRepository) {
                 continue;
             }
