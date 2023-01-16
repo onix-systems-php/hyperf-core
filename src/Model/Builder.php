@@ -62,19 +62,19 @@ class Builder extends BaseBuilder
         return parent::get($columns);
     }
 
-    public function chunk(int $count, callable $callback): bool
+    public function chunk($count, callable $callback)
     {
         $this->guardList();
         return parent::chunk($count, $callback);
     }
 
-    public function chunkById($count, callable $callback, ?string $column = null, ?string $alias = null): bool
+    public function chunkById($count, callable $callback, $column = null, $alias = null)
     {
         $this->guardList();
         return parent::chunkById($count, $callback, $column, $alias);
     }
 
-    public function each(callable $callback, int $count = 1000): bool
+    public function each(callable $callback, $count = 1000)
     {
         $this->guardList();
         return parent::each($callback, $count);

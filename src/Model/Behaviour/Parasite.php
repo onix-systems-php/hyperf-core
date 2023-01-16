@@ -53,7 +53,7 @@ trait Parasite
         throw new BadMethodCallException('Method ' . static::class . '::' . $method . '() not found');
     }
 
-    public function hasGetMutator($key)
+    public function hasGetMutator(string $key): bool
     {
         if (isset(static::$externalMethods['get' . Str::studly($key) . 'Attribute'])) {
             return true;
@@ -61,7 +61,7 @@ trait Parasite
         return parent::hasGetMutator($key);
     }
 
-    public function hasSetMutator($key)
+    public function hasSetMutator(string $key): bool
     {
         if (isset(static::$externalMethods['set' . Str::studly($key) . 'Attribute'])) {
             return true;
