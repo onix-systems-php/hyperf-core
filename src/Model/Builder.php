@@ -22,7 +22,7 @@ class Builder extends BaseBuilder
 
     private const ORDER_DESC = 'desc';
 
-    public function __call($method, $parameters): self
+    public function __call($method, $parameters): mixed
     {
         if (isset($this->repository) && method_exists($this->repository, $scope = 'scope' . ucfirst($method))) {
             return $this->callScope([$this->repository, $scope], $parameters);

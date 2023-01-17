@@ -5,7 +5,7 @@ namespace OnixSystemsPHP\HyperfCore\Repository;
 
 trait HasRepository
 {
-    protected AbstractRepository $repository;
+    protected AbstractRepository | null $repository = null;
 
     public function setRepository(AbstractRepository $repository): self
     {
