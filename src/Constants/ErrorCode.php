@@ -19,6 +19,12 @@ class ErrorCode extends AbstractConstants
      */
     public const UNAUTHORIZED_ERROR = 401;
 
+
+    /**
+     * @Message("Forbidden！")
+     */
+    public const FORBIDDEN_ERROR = 403;
+
     /**
      * @Message("Not found！")
      */

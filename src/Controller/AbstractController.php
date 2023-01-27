@@ -23,7 +23,14 @@ use Psr\Container\ContainerInterface;
     schema: new OA\Schema(type: 'array', items: new OA\Items(type: 'string')),
     example: '-id'
 )]
-#[OA\Parameter(parameter: 'Locale', name: 'Accept-Langueage', in: 'header', allowEmptyValue: true, example: 'en-US')]
+#[OA\Parameter(
+    parameter: 'Locale',
+    name: 'Accept-Language',
+    in: 'header',
+    allowEmptyValue: true,
+    schema: new OA\Schema(type: 'string'),
+    example: 'en-US',
+)]
 #[OA\Schema(
     schema: 'HttpErrorCommon',
     properties: [
@@ -36,6 +43,8 @@ use Psr\Container\ContainerInterface;
 #[OA\Response(response: 400, description: 'Bad Request', content:
     new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
 #[OA\Response(response: 401, description: 'Unauthorized', content:
+    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+#[OA\Response(response: 403, description: 'Forbidden', content:
     new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
 #[OA\Response(response: 404, description: 'Not Found', content:
     new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
