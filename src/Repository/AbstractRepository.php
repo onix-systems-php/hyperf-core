@@ -102,4 +102,29 @@ abstract class AbstractRepository
     {
         return $this->dataGuard;
     }
+
+    public function getChanges(AbstractModel $data): array
+    {
+        $fieldsToSkipValue = array_flip($data->getHidden());
+        if (property_exists($data, 'fileRelations')) {
+            $fieldsToSkipValue = array_merge($fieldsToSkipValue, $data->fileRelations);
+        }
+        $changes = $data->getDirty();
+        unset($changes[$data->getUpdatedAtColumn()]);
+
+        $result = [];
+
+        foreach ($changes as $key => $value) {
+            if (array_key_exists($key, $fieldsToSkipValue)) {
+                $result[$key] = 'changed';
+            } else {
+                $result[$key] = [
+                    'cur'  => $value,
+                    'prev' => $data->getOriginal($key),
+                ];
+            }
+        }
+
+        return $result;
+    }
 }
