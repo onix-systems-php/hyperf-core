@@ -25,7 +25,7 @@ class ConfigProvider
             ],
             'publish' => [
                 [
-                    'id' => 'config',
+                    'id' => 'anonymization',
                     'description' => 'The config for anonymization from onix-systems-php/hyperf-core.',
                     'source' => __DIR__ . '/../publish/anonymization.php',
                     'destination' => BASE_PATH . '/config/autoload/anonymization.php',
@@ -35,6 +35,12 @@ class ConfigProvider
                     'description' => 'The config for swagger from onix-systems-php/hyperf-core.',
                     'source' => __DIR__ . '/../publish/swagger.php',
                     'destination' => BASE_PATH . '/config/autoload/swagger.php',
+                ],
+                [
+                    'id' => 'core',
+                    'description' => 'The config for onix-systems-php/hyperf-core.',
+                    'source' => __DIR__ . '/../publish/core.php',
+                    'destination' => BASE_PATH . '/config/autoload/core.php',
                 ],
             ],
         ];
