@@ -38,7 +38,8 @@ use Psr\Container\ContainerInterface;
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
-    ]
+    ],
+    type: 'object',
 )]
 #[OA\Response(response: 200, description: 'Success')]
 #[OA\Response(response: 400, description: 'Bad Request', content:
