@@ -14,8 +14,9 @@ use Psr\Container\ContainerInterface;
  * https://editor.swagger.io
  */
 #[OA\Server(url: 'http://localhost/', description: 'Local Server')]
-#[OA\SecurityScheme(securityScheme: 'bearerAuth', type: 'http', in: 'header', bearerFormat: 'JWT', scheme: 'bearer')]
-#[OA\Parameter(parameter: 'Pagination_per_page', name: 'per_page', in: 'query', allowEmptyValue: true, example: '20')]
+#[OA\SecurityScheme(securityScheme: 'bearerAuth', type: 'http', bearerFormat: 'JWT', scheme: 'bearer')]
+#[OA\Parameter(parameter: 'Pagination_page', name: 'page', in: 'query', schema: new OA\Schema(type: 'integer'), example: '1')]
+#[OA\Parameter(parameter: 'Pagination_per_page', name: 'per_page', in: 'query', allowEmptyValue: true, schema: new OA\Schema(type: 'integer'), example: '20')]
 #[OA\Parameter(
     parameter: 'Pagination_order',
     name: 'order[]',
