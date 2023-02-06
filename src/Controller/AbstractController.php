@@ -32,28 +32,49 @@ use Psr\Container\ContainerInterface;
     schema: new OA\Schema(type: 'string'),
     example: 'en-US',
 )]
-#[OA\Schema(
-    schema: 'HttpErrorCommon',
-    properties: [
+#[OA\Response(response: 200, description: 'Success')]
+#[OA\Response(response: 400, description: 'Bad Request', content:
+    new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
-    ],
-    type: 'object',
+    ])
 )]
-#[OA\Response(response: 200, description: 'Success')]
-#[OA\Response(response: 400, description: 'Bad Request', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
 #[OA\Response(response: 401, description: 'Unauthorized', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+    new OA\JsonContent(properties: [
+        new OA\Property(property: 'status', type: 'number'),
+        new OA\Property(property: 'title', type: 'string'),
+        new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
+    ])
+)]
 #[OA\Response(response: 403, description: 'Forbidden', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+    new OA\JsonContent(properties: [
+        new OA\Property(property: 'status', type: 'number'),
+        new OA\Property(property: 'title', type: 'string'),
+        new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
+    ])
+)]
 #[OA\Response(response: 404, description: 'Not Found', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+    new OA\JsonContent(properties: [
+        new OA\Property(property: 'status', type: 'number'),
+        new OA\Property(property: 'title', type: 'string'),
+        new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
+    ])
+)]
 #[OA\Response(response: 422, description: 'Validation error.', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+    new OA\JsonContent(properties: [
+        new OA\Property(property: 'status', type: 'number'),
+        new OA\Property(property: 'title', type: 'string'),
+        new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
+    ])
+)]
 #[OA\Response(response: 500, description: 'Server error.', content:
-    new OA\JsonContent(ref: '#/components/schemas/HttpErrorCommon'))]
+    new OA\JsonContent(properties: [
+        new OA\Property(property: 'status', type: 'number'),
+        new OA\Property(property: 'title', type: 'string'),
+        new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
+    ])
+)]
 abstract class AbstractController
 {
     #[Inject]
