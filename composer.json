@@ -24,6 +24,7 @@
         "hyperf/async-queue": "^3.0",
         "hyperf/event": "^3.0",
         "hyperf/command": "^3.0",
+        "hyperf/config": "^3.0",
         "hyperf/constants": "^3.0",
         "hyperf/contract": "^3.0",
         "hyperf/database": "^3.0",
