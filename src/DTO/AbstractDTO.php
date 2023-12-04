@@ -21,12 +21,16 @@ abstract class AbstractDTO
 
     public function toArray(): array
     {
-        return array_map(function ($item) {
+        return array_map(static function ($item) {
             if ($item instanceof AbstractDTO) {
                 return $item->toArray();
-            } else {
-                return $item;
             }
+
+            if (is_array($item)) {
+                return array_map(static fn($arr) => $arr instanceof AbstractDTO ? $arr->toArray() : $arr, $item);
+            }
+
+            return $item;
         }, (array)$this);
     }
 }
