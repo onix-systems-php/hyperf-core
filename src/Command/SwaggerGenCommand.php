@@ -1,15 +1,22 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Command;
 
 use Hyperf\Command\Annotation\Command;
 use Hyperf\Command\Command as HyperfCommand;
 use Hyperf\Contract\ConfigInterface;
-use OpenApi\Analysers\TokenAnalyser;
 use OpenApi\Generator;
 use Symfony\Component\Console\Input\InputOption;
-
 
 #[Command]
 class SwaggerGenCommand extends HyperfCommand
@@ -20,13 +27,13 @@ class SwaggerGenCommand extends HyperfCommand
         parent::__construct('swagger:gen');
     }
 
-    public function configure()
+    public function configure(): void
     {
         parent::configure();
         $this->setDescription('Generate swagger API doc');
     }
 
-    public function handle()
+    public function handle(): void
     {
         $outputDir = $this->input->getOption('output');
         $format = $this->input->getOption('format');

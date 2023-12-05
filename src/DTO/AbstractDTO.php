@@ -1,6 +1,15 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\DTO;
 
 use ClassTransformer\ClassTransformer;
@@ -27,10 +36,10 @@ abstract class AbstractDTO
             }
 
             if (is_array($item)) {
-                return array_map(static fn($arr) => $arr instanceof AbstractDTO ? $arr->toArray() : $arr, $item);
+                return array_map(static fn ($arr) => $arr instanceof AbstractDTO ? $arr->toArray() : $arr, $item);
             }
 
             return $item;
-        }, (array)$this);
+        }, (array) $this);
     }
 }

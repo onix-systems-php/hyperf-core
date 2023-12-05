@@ -1,15 +1,24 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Service\Common;
 
-use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
-use OnixSystemsPHP\HyperfCore\Repository\AbstractRepository;
-use OnixSystemsPHP\HyperfCore\Service\Service;
 use Faker\Factory;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\ContainerInterface;
 use Hyperf\DbConnection\Annotation\Transactional;
+use OnixSystemsPHP\HyperfCore\Model\AbstractModel;
+use OnixSystemsPHP\HyperfCore\Repository\AbstractRepository;
+use OnixSystemsPHP\HyperfCore\Service\Service;
 
 #[Service]
 class AnonymizeDataService
@@ -17,8 +26,7 @@ class AnonymizeDataService
     public function __construct(
         private ConfigInterface $config,
         private ContainerInterface $container,
-    ) {
-    }
+    ) {}
 
     #[Transactional(attempts: 1)]
     public function run(string $mode): void
@@ -33,7 +41,7 @@ class AnonymizeDataService
             }
 
             $repositoryClass = $this->container->make($repositoryClassName);
-            if (!$repositoryClass instanceof AbstractRepository) {
+            if (! $repositoryClass instanceof AbstractRepository) {
                 continue;
             }
             $repositoryClass->processGuards = false;
@@ -41,7 +49,7 @@ class AnonymizeDataService
             $repositoryClass->query()->chunk(100, function ($records) use ($faker, $methodName) {
                 /** @var AbstractModel $record */
                 foreach ($records as $record) {
-                    $record->$methodName($faker)->saveOrFail();
+                    $record->{$methodName}($faker)->saveOrFail();
                 }
             });
         }
