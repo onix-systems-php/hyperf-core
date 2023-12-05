@@ -1,6 +1,15 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Model;
 
 use Hyperf\Database\Model\Builder as BaseBuilder;
@@ -30,7 +39,6 @@ class Builder extends BaseBuilder
         return parent::__call($method, $parameters);
     }
 
-
     public function finder(string $type, ...$parameters): self
     {
         if (isset($this->repository) && method_exists($this->repository, $scope = 'scope' . ucfirst($type))) {
@@ -56,7 +64,7 @@ class Builder extends BaseBuilder
         return null;
     }
 
-    public function get($columns = ['*']): Collection|array
+    public function get($columns = ['*']): array|Collection
     {
         $this->guardList();
         return parent::get($columns);

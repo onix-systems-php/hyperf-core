@@ -1,6 +1,15 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Repository;
 
 use Hyperf\Database\Model\Model;
@@ -14,12 +23,12 @@ use OnixSystemsPHP\HyperfCore\Model\Builder;
 abstract class AbstractRepository
 {
     public bool $processGuards = true;
+
     protected string $modelClass = AbstractModel::class;
 
     public function __construct(
         protected ?CoreDataGuard $dataGuard,
-    ) {
-    }
+    ) {}
 
     public function query(): Builder
     {
@@ -40,7 +49,6 @@ abstract class AbstractRepository
 
     public function save(Model $model): bool
     {
-
         return $model->save();
     }
 
@@ -119,7 +127,7 @@ abstract class AbstractRepository
                 $result[$key] = 'changed';
             } else {
                 $result[$key] = [
-                    'cur'  => $value,
+                    'cur' => $value,
                     'prev' => $data->getOriginal($key),
                 ];
             }

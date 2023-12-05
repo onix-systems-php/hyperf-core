@@ -1,6 +1,15 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Controller;
 
 use Hyperf\Di\Annotation\Inject;
@@ -11,7 +20,7 @@ use Psr\Container\ContainerInterface;
 
 /**
  * Documentation Init
- * https://editor.swagger.io
+ * https://editor.swagger.io.
  */
 #[OA\Server(url: 'http://localhost/', description: 'Local Server')]
 #[OA\SecurityScheme(securityScheme: 'bearerAuth', type: 'http', bearerFormat: 'JWT', scheme: 'bearer')]
@@ -33,43 +42,55 @@ use Psr\Container\ContainerInterface;
     example: 'en-US',
 )]
 #[OA\Response(response: 200, description: 'Success')]
-#[OA\Response(response: 400, description: 'Bad Request', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 400,
+    description: 'Bad Request',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
     ])
 )]
-#[OA\Response(response: 401, description: 'Unauthorized', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 401,
+    description: 'Unauthorized',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
     ])
 )]
-#[OA\Response(response: 403, description: 'Forbidden', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 403,
+    description: 'Forbidden',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
     ])
 )]
-#[OA\Response(response: 404, description: 'Not Found', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 404,
+    description: 'Not Found',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
     ])
 )]
-#[OA\Response(response: 422, description: 'Validation error.', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 422,
+    description: 'Validation error.',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),
     ])
 )]
-#[OA\Response(response: 500, description: 'Server error.', content:
-    new OA\JsonContent(properties: [
+#[OA\Response(
+    response: 500,
+    description: 'Server error.',
+    content: new OA\JsonContent(properties: [
         new OA\Property(property: 'status', type: 'number'),
         new OA\Property(property: 'title', type: 'string'),
         new OA\Property(property: 'data', type: 'array', items: new OA\Items()),

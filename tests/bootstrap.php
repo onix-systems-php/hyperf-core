@@ -1,5 +1,12 @@
 <?php
 
 declare(strict_types=1);
-
-require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+require_once dirname(__FILE__, 2) . '/vendor/autoload.php';

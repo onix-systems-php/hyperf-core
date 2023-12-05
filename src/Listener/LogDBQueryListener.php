@@ -1,13 +1,22 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Listener;
 
+use Hyperf\Collection\Arr;
 use Hyperf\Database\Events\QueryExecuted;
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Logger\LoggerFactory;
-use Hyperf\Utils\Arr;
-use Hyperf\Utils\Str;
+use Hyperf\Stringable\Str;
 use Psr\Log\LoggerInterface;
 
 class LogDBQueryListener implements ListenerInterface
@@ -30,7 +39,7 @@ class LogDBQueryListener implements ListenerInterface
     {
         if ($event instanceof QueryExecuted) {
             $sql = $event->sql;
-            if (!Arr::isAssoc($event->bindings)) {
+            if (! Arr::isAssoc($event->bindings)) {
                 foreach ($event->bindings as $value) {
                     $sql = Str::replaceFirst('?', "'{$value}'", $sql);
                 }

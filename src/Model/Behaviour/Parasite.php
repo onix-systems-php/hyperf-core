@@ -1,11 +1,18 @@
 <?php
+
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
 
 namespace OnixSystemsPHP\HyperfCore\Model\Behaviour;
 
-use BadMethodCallException;
-use Closure;
-use Hyperf\Utils\Str;
+use Hyperf\Stringable\Str;
 
 trait Parasite
 {
@@ -16,7 +23,7 @@ trait Parasite
     public static function __callStatic($method, $parameters)
     {
         if (isset(static::$staticExternalMethods[$method])) {
-            $closure = Closure::bind(static::$staticExternalMethods[$method], null, static::class);
+            $closure = \Closure::bind(static::$staticExternalMethods[$method], null, static::class);
             return call_user_func_array($closure, $parameters);
         }
         if (method_exists(static::class, '__callStaticAfter')) {
@@ -25,23 +32,13 @@ trait Parasite
         if (method_exists(parent::class, '__callStatic')) {
             return parent::__callStatic($method, $parameters);
         }
-        throw new BadMethodCallException('Method ' . static::class . '::' . $method . '() not found');
-    }
-
-    public static function addStaticExternalMethod(string $name, Closure $method): void
-    {
-        static::$staticExternalMethods[$name] = $method;
-    }
-
-    public static function addExternalMethod(string $name, Closure $method): void
-    {
-        static::$externalMethods[$name] = $method;
+        throw new \BadMethodCallException('Method ' . static::class . '::' . $method . '() not found');
     }
 
     public function __call($method, $parameters)
     {
         if (isset(static::$externalMethods[$method])) {
-            $closure = Closure::bind(static::$externalMethods[$method], $this, static::class);
+            $closure = \Closure::bind(static::$externalMethods[$method], $this, static::class);
             return call_user_func_array($closure, $parameters);
         }
         if (method_exists($this, '__callAfter')) {
@@ -50,7 +47,17 @@ trait Parasite
         if (method_exists(parent::class, '__call')) {
             return parent::__call($method, $parameters);
         }
-        throw new BadMethodCallException('Method ' . static::class . '::' . $method . '() not found');
+        throw new \BadMethodCallException('Method ' . static::class . '::' . $method . '() not found');
+    }
+
+    public static function addStaticExternalMethod(string $name, \Closure $method): void
+    {
+        static::$staticExternalMethods[$name] = $method;
+    }
+
+    public static function addExternalMethod(string $name, \Closure $method): void
+    {
+        static::$externalMethods[$name] = $method;
     }
 
     public function hasGetMutator(string $key): bool

@@ -1,9 +1,18 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 namespace OnixSystemsPHP\HyperfCore\Model\Filter;
 
-use Hyperf\Utils\Str;
+use Hyperf\Stringable\Str;
 use OnixSystemsPHP\HyperfCore\Model\Builder;
 use OnixSystemsPHP\HyperfCore\Repository\HasRepository;
 
@@ -13,9 +22,7 @@ abstract class AbstractFilter
 
     protected Builder $builder;
 
-    public function __construct(protected array $filters)
-    {
-    }
+    public function __construct(protected array $filters) {}
 
     public function apply(Builder $builder)
     {
