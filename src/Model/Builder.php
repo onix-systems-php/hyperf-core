@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace OnixSystemsPHP\HyperfCore\Model;
 
-use Hyperf\Database\Exception\QueryException;
 use Hyperf\Database\Model\Builder as BaseBuilder;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
