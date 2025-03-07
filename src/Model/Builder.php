@@ -9,16 +9,14 @@ declare(strict_types=1);
 
 namespace OnixSystemsPHP\HyperfCore\Model;
 
-use Exception;
+use Hyperf\Database\Exception\QueryException;
 use Hyperf\Database\Model\Builder as BaseBuilder;
 use Hyperf\Database\Model\Collection;
 use Hyperf\Database\Model\Model;
-use Hyperf\Database\Model\ModelNotFoundException;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationRequestDTO;
 use OnixSystemsPHP\HyperfCore\DTO\Common\PaginationResultDTO;
 use OnixSystemsPHP\HyperfCore\Model\Filter\AbstractFilter;
 use OnixSystemsPHP\HyperfCore\Repository\HasRepository;
-use function Hyperf\Translation\__;
 
 /**
  * @method Builder filter(AbstractFilter $filters)
@@ -104,23 +102,21 @@ class Builder extends BaseBuilder
                 } else {
                     $column = $item;
                 }
-                $this->orderByRaw("$column $by NULLS LAST");
+                if (in_array($this->model->fillable, $column, true)) {
+                    $this->orderByRaw("$column $by NULLS LAST");
+                }
             }
         }
-        try {
-            $paginated = $this->paginate($per_page, page: $page);
-            $total = $paginated->total();
+        $paginated = $this->paginate($per_page, page: $page);
+        $total = $paginated->total();
 
-            return PaginationResultDTO::make([
-                'list' => $paginated->items(),
-                'total' => $total,
-                'page' => $page,
-                'per_page' => $per_page,
-                'total_pages' => $per_page != 0 ? ceil($total / $per_page) : 0,
-            ]);
-        } catch (Exception $e) {
-            throw new ModelNotFoundException(__('exceptions.model.pagination.failed'));
-        }
+        return PaginationResultDTO::make([
+            'list' => $paginated->items(),
+            'total' => $total,
+            'page' => $page,
+            'per_page' => $per_page,
+            'total_pages' => $per_page != 0 ? ceil($total / $per_page) : 0,
+        ]);
     }
 
     protected function guardList(): void
