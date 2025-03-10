@@ -87,7 +87,12 @@ class Builder extends BaseBuilder
         return parent::each($callback, $count);
     }
 
-    public function paginateDTO(PaginationRequestDTO $params): PaginationResultDTO
+    /**
+     * @param PaginationRequestDTO $params
+     * @param string[] $whitelist
+     * @return PaginationResultDTO
+     */
+    public function paginateDTO(PaginationRequestDTO $params, array $whitelist = []): PaginationResultDTO
     {
         $this->guardList();
         $page = $params->page ?? 1;
@@ -100,7 +105,7 @@ class Builder extends BaseBuilder
                     $by = 'DESC';
                     $column = substr($item, 1);
                 }
-                if ($this->model->isFillable($column)) {
+                if (in_array($column, $whitelist)) {
                     $this->orderByRaw("$column $by NULLS LAST");
                 }
             }
