@@ -101,7 +101,7 @@ class Builder extends BaseBuilder
                 } else {
                     $column = $item;
                 }
-                if (in_array($this->model->fillable, $column, true)) {
+                if (in_array($column, $this->model->fillable, true)) {
                     $this->orderByRaw("$column $by NULLS LAST");
                 }
             }
