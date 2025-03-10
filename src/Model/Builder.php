@@ -95,13 +95,12 @@ class Builder extends BaseBuilder
         $by = 'ASC';
         if (is_array($params->order)) {
             foreach ($params->order as $item) {
+                $column = $item;
                 if (str_starts_with($item, '-')) {
                     $by = 'DESC';
                     $column = substr($item, 1);
-                } else {
-                    $column = $item;
                 }
-                if (in_array($column, $this->model->fillable, true)) {
+                if ($this->model->isFillable($column)) {
                     $this->orderByRaw("$column $by NULLS LAST");
                 }
             }
