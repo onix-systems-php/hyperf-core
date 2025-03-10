@@ -105,8 +105,8 @@ class Builder extends BaseBuilder
                     $by = 'DESC';
                     $column = substr($item, 1);
                 }
-                if (in_array($column, $whitelist)) {
-                    $this->orderByRaw("$column $by NULLS LAST");
+                if (empty($whitelist) || in_array($column, $whitelist)) {
+                    $this->orderBy($column, $by);
                 }
             }
         }
