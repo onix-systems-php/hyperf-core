@@ -89,10 +89,10 @@ class Builder extends BaseBuilder
 
     /**
      * @param PaginationRequestDTO $params
-     * @param string[] $whitelist
+     * @param string[] $sortWhitelist
      * @return PaginationResultDTO
      */
-    public function paginateDTO(PaginationRequestDTO $params, array $whitelist = []): PaginationResultDTO
+    public function paginateDTO(PaginationRequestDTO $params, array $sortWhitelist = []): PaginationResultDTO
     {
         $this->guardList();
         $page = $params->page ?? 1;
@@ -105,7 +105,7 @@ class Builder extends BaseBuilder
                     $by = 'DESC';
                     $column = substr($item, 1);
                 }
-                if (empty($whitelist) || in_array($column, $whitelist)) {
+                if (empty($sortWhitelist) || in_array($column, $sortWhitelist)) {
                     $this->orderBy($column, $by);
                 }
             }
