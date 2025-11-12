@@ -37,7 +37,7 @@
         "hyperf/socketio-server": "^3.1",
         "hyperf/testing": "^3.1",
         "hyperf/validation": "^3.1",
-        "yzen.dev/plain-to-class": "^1.0|^3.0",
+        "yzen.dev/plain-to-class": "^3.0",
         "zircote/swagger-php": "^4.5"
     },
     "require-dev": {
